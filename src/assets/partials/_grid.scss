@@ -1,0 +1,50 @@
+@use "sass:math";
+
+/* mixin */
+@mixin column($posicion) {
+  $columnWidth: 100% / 12 * $posicion;
+  width: calc(#{$columnWidth} - #{$marginGrid * 2});
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+[class*="col-"] {
+  margin: $marginGrid;
+}
+
+/* bucle for para las columnas */
+/* @for $i from 1 through 12 */
+
+@for $i from 1 to 12 {
+
+  /* Sistema de columnas para movil - 12 columnas */
+  .col-#{$i}{
+    @include column($i);
+  }
+}
+
+/* media queries tablet */
+@media(min-width: $breakPointTablet) {
+  /* sistema de columnas */
+  @for $i from 1 to 12 {
+    /* tablet */
+    .col-d-#{$i} {
+      @include column($i);
+    }
+  }
+}
+
+/* media queries desktop */
+
+@media(min-width: $breakPointDesktop) {
+  /* sistema de columnas */
+  @for $i from 1 to 12 {
+    /* tablet */
+    .col-t-#{$i} {
+      @include column($i);
+    }
+  }
+}
